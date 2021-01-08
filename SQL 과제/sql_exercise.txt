@@ -1,0 +1,249 @@
+/**********************************************************
+*	SQL Query & Function Example1
+**********************************************************/
+/**
+-- Employees Table Columns
+-- EMPLOYEE_ID
+-- FIRST_NAME
+-- LAST_NAME
+-- EMAIL
+-- PHONE_NUMBER
+-- HIRE_DATE
+-- JOB_ID
+-- SALARY
+-- COMMISSION_PCT
+-- MANAGER_ID
+-- DEPARTMENT_ID
+**/
+
+CREATE TABLE employees (
+emp_id VARCHAR(20) NOT NULL,
+first_name VARCHAR(20),
+last_name VARCHAR(25),
+email VARCHAR(30),
+phone_number VARCHAR(20),
+hire_date DATE,
+job_id INT,
+salary INT,
+commission_pct FLOAT,
+manager_id VARCHAR(20),
+department_id INT,
+PRIMARY KEY (emp_id),
+FOREIGN KEY (job_id) REFERENCES jobs(job_id),
+FOREIGN KEY (department_id) REFERENCES departments(department_id)
+);
+
+CREATE TABLE jobs (
+job_id INT NOT NULL,
+job_name VARCHAR(20),
+PRIMARY KEY (job_id)
+);
+
+CREATE TABLE departments (
+department_id INT NOT NULL,
+department_name VARCHAR(20),
+manager_id VARCHAR(20),
+PRIMARY KEY (department_id)
+);
+
+job
+1. SI
+2. SM
+3. DevOps
+
+INSERT INTO jobs values (1, 'SI');
+INSERT INTO jobs values (2, 'SM');
+INSERT INTO jobs values (3, 'DevOps');
+
+department
+1. 클라우드 'dt1001101' 
+2. 인공지능 'dt1002102'
+3. 빅데이터 'dt1003103'
+4. 웹앱 'dt1004104'
+
+INSERT INTO departments values (1, '클라우드', 'dt1001101');
+INSERT INTO departments values (2, '인공지능', 'dt1002102');
+INSERT INTO departments values (3, '빅데이터', 'dt1003103');
+INSERT INTO departments values (4, '웹앱', 'dt1004104');
+
+INSERT INTO employees values('dt1001101', '지선', '이', 'dlwltjs@naver.com', '01010000001', '2020-01-01', 1, 5500000, 0.1, NULL, 1);
+INSERT INTO employees values('dt1002102', '수경', '은', 'dmstnrud@naver.com', '01010000002', '2020-01-01', 3, 5400000, 0.1, NULL, 2);
+INSERT INTO employees values('dt1003103', '민석', '김', 'rlaalstjr@naver.com', '01010000003', '2020-01-01', 1, 5300000, 0.1, NULL, 3);
+INSERT INTO employees values('dt1004104', '은희', '박', 'qkrdmsgml@naver.com', '01010000004', '2020-01-01', 2, 5200000, 0.1, NULL, 4);
+
+INSERT INTO employees values('dt2001201', '정선', '최', 'chlwjdtjs@naver.com', '0102000001', '2020-09-07', 1, 4500000, 0.1, 'dt1001101', 1);
+INSERT INTO employees values('dt2002202', '영빈', '윤', 'dbsdudqls@naver.com', '0102000002', '2020-09-07', 1, 4400000, 0.1, 'dt1002102', 2);
+INSERT INTO employees values('dt2003203', '혜림', '김', 'rlagPfla@naver.com', '0102000003', '2020-09-07', 1, 4300000, 0.1, 'dt1003103', 3);
+INSERT INTO employees values('dt2004204', '소희', '김', 'rlathgml@naver.com', '0102000004', '2020-09-07', 1, 4200000, 0.1, 'dt1004104', 4);
+
+--부서번호가 3번인 부서의 사람 중 사원번호, 이름, 월급을 출력하라
+
+
+
+
+
+--사원번호가 dt1001101인 사람 중 이름, 입사일, 부서 번호를 출력하라.
+
+
+
+
+--이름이 소희인 사람의 모든 정보를 출력하라.
+
+
+
+
+
+--입사일이 2020-09-07인 사원의 이름, 부서번호, 월급을 출력하라.
+select ename 이름, deptno 부서번호, sal 월급
+
+
+
+
+
+--직무가 SI가 아닌 사람의 모든 정보를 출력하라.
+
+
+
+
+--입사일이 2020-09-07 이후에 입사한 사원의 정보를 출력하라.
+
+
+
+--부서번호 1번을 제외한 모든 사람의 이름, 사원번호, 부서번호를 출력하라.
+
+
+
+
+--메일이 c로 시작하는 사원의 사원번호, 이름, 입사일, 부서번호를 출력하라.
+
+
+
+--메일이 r로 시작하고 마지막 글자가 r인 사람이 정보를 출력하라.
+
+
+
+
+/**
+employees 테이블에서 이름, 급여, 상여, 총액을 구하여 총액 많은 순서로 출력하라 단 상여금이 NULL인 사람은 제외
+
+*/
+
+
+
+
+/**
+3번 부서의 모든 사람들에게 급여의 13%를 보너스로 지불하기로 하였다. 이름, 급여, 보너스금액, 부서번호를 출력하라.
+**/
+
+
+
+/**
+3번 부서의 연봉을 계산하여 이름, 부서번호, 급여, 연봉을 출력하라. 단 연말에 급여의 150%를 보너스로 지급한다.
+   -- 연봉 = sal*12+(sal*1.5)
+**/
+
+
+
+
+/**
+부서번호가 2인 부서의 시간당 임금을 계산하여 출력하라. 단 1달의 근무일수는 12일이고 1일 근무시간은 5시간이다.
+출력양식은 이름, 급여, 시간당 임금(소수이하 1번째 자리에서 반올림)을 출력하라.
+   -- 시급 = sal/일수/시간  -> sal/ 12/5 
+   -- round(m, n) m을 소수점 n자리에서 반올림 
+**/
+
+
+
+
+/**
+급여가 400부터 500사이의 사람은 급여의 5%를 회비로 지불하기로 하였다. 이를 이름, 급여, 회비(-2자리에서 반올림)를 출력하라.
+	-- 회비  = sal * 0.05	
+	-- -2자리에서 반올림 : 정수 2번째 자리에서 반올림.. 100단위로  
+**/
+
+
+
+
+
+/**
+입사일부터 지금까지의 날짜수를 출력하라. 부서번호, 이름, 입사일, 현재일, 근무일수(소수점이하절삭), 근무년수,
+ 근무월수(30일 기준)를 출력하라.
+	-- 지금 날짜 : sysdate 
+	-- 근무 일수 : 현재날짜 - 입사일 = sysdate - hire_date  -> 날짜 - 날짜 : 일수 나옴
+	-- 근무 년수 : to_char(sysdate,'YYYY')-to_char(hiredate,'YYYY')
+	-- 근무 월수 : 근무일수 / 1달(30일)
+**/
+
+
+
+
+
+
+
+/**
+입사일로부터 오늘까지의 일수를 구하여 이름, 입사일, 근무일수를 출력하라.
+--round(sysdate-hiredate,0) 근무일수
+**/
+
+
+
+/**
+입사일을 2012년 7월 5일의 형태로 이름, 입사일을 출력하라.
+	-- 날짜 형시 앞에 fm 은 선행 '0'을 표현하지 않는다는 뜻.. 
+	-- 'fmYYYY"년" MM"월" DD"일' 
+**/
+
+
+
+
+/**
+이름(first_name)의 글자수가 6자이상인 사람의 이름을 앞에서 3자만 구하여 소문자로 이름만을 출력하라.
+	-- substr(str, position, length) : str 문자를 positin 부터 length길이 만큼 표현
+	-- lower(str)  소문자 변환
+	-- length(str)  str의 길이
+**/
+
+
+
+
+
+
+/**
+10번 부서 월급의 평균ㅡ 최고, 최저, 인원수를 구하여 출력하라
+**/
+
+
+
+
+
+/**
+각 부서별 급여의 평균, 최고, 최저, 인원수를 구하여 출력하라.
+**/
+
+
+
+
+
+
+/**
+각 부서별 같은 업무를 하는 사람의 인원수를 구하여 부서번호, 업무명, 인원수를 출력하라.
+**/
+
+
+
+
+
+/**
+같은 업무를 하는 사람의 수가 4명 이상인 업무와 인원수를 출력하라.
+**/
+
+
+
+
+
+/**
+각 부서별 평균월급, 전체월급, 최고월급, 최저월급,을 구하여 평균월급이 많은순으로 출력하라.
+**/
+
+
+
