@@ -1,15 +1,45 @@
+import os
 # todoNum, content
 todos = []
 todoNum = 0
 
-while True:
+def menuList():
     print("===== Todo List System =====")
     print("1. 할일 입력")
     print("2. 할일 목록 조회")
     print("3. 할일 수정")
     print("4. 할일 삭제")
     print("0. 종료")
-    menu = int(input("번호를 입력하세요 : "))
+
+def save_data():
+    save_file = open("C:/Users/OWNER/Desktop/cloud_msa/cloud_msa_assignment/Python/todo_data.txt","w")
+    for i in range(len(todos)) :
+        save_file.write("{}|{}\n".format(todos[i]["todoNum"], todos[i]["content"]))
+    save_file.close()
+
+def load_data():
+    fileExist = os.path.isfile("C:/Users/OWNER/Desktop/cloud_msa/cloud_msa_assignment/Python/todo_data.txt")
+    if fileExist:
+        read_file = open("C:/Users/OWNER/Desktop/cloud_msa/cloud_msa_assignment/Python/todo_data.txt", "r")
+        while True:
+            data = read_file.readline()
+            if len(data.split(sep='|'))==2:
+                todo = data.split(sep='|')
+                todos.append({"todoNum":todo[0], "content":todo[1].strip("\n")})
+            if not data : break
+        read_file.close()
+
+
+load_data()
+while True:
+    menuList()
+    while True:
+        menu = input("번호를 입력하세요 : ")
+        if not menu.isdecimal():
+            print("0~4의 정수를 선택하세요")
+        else:
+            menu = int(menu)
+            break
     print()
 
     for i in range(len(todos)):
@@ -53,6 +83,7 @@ while True:
     elif(menu==0):
         print("시스템을 종료합니다")
         print()
+        save_data()
         break
     else:
         print("0~4번 중에 선택해주세요")
